@@ -22,9 +22,7 @@ const kPinkColor = Color(0xFFE3396D);
 const kGreenColor = Color(0xFF39FF14);
 const kOrangeColor = Color(0xFFf4643b);
 const kYellowColor = Colors.yellow;
-// const kYellowColor = Color();
-// const kRedColor = Color();
-// const kGreenColor = Color();
+
 // const kPurpleColor = Color();
 
 // Text Colors

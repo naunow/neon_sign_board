@@ -24,10 +24,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: themeData(context),
       themeMode: ThemeMode.light,
-      home: Transform.rotate(
-        angle: 0,
-        child: Home(),
-      ),
+      home: Home(),
     );
   }
 }
@@ -46,54 +43,23 @@ class Home extends StatelessWidget {
                 image: DecorationImage(
                     image: AssetImage(orientation == Orientation.landscape
                         // https://www.beiz.jp/download_P/stone/00096.html
-                        ? 'assets/images/background_oldbrick_edited.jpg'
-                        : 'assets/images/background_oldbrick_edited_vertical.jpg'),
+                        ? 'assets/images/background_oldbrick_horizontal.jpg'
+                        : 'assets/images/background_oldbrick_vertical.png'),
                     fit: BoxFit.fill),
               ),
               child: Center(
-                  child: Transform.rotate(
-                angle: orientation == Orientation.landscape ? 0 : pi / 2,
                 child: NeonTextHighlight(
-                  text: 'hello world',
-                  fontSize: 80,
+                  text: 'open',
+                  fontSize: 120,
                   fontFamily: 'Neoneon',
-                  color: kYellowColor,
+                  color: kOrangeColor,
                 ),
-
-                // Transform.rotate(
-                //   angle: orientation == Orientation.landscape ? 0 : pi / 2,
-                // Center(
-                //     child: NeonTextHighlight(
-                //   text: 'hello world',
-                //   fontSize: 100,
-                //   fontFamily: 'Neoneon',
-                //   color: kYellowColor,
-                // )),
-                // ),
-              )));
+              ));
         },
       ),
     );
   }
 }
-
-// class MaskedTest extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return ShaderMask(
-//       child: Text(
-//         'HELLO WORLD',
-//         style: TextStyle(fontSize: 60),
-//       ),
-//       shaderCallback: (bounds) {
-//         return LinearGradient(
-//             colors: [kBlueColor, Colors.white, kBlueColor],
-//             stops: [0.0, 0.5, 0.8]).createShader(bounds);
-//       },
-//       blendMode: BlendMode.srcATop,
-//     );
-//   }
-// }
 
 class NeonTextHighlight extends StatelessWidget {
   final String text;
@@ -112,7 +78,7 @@ class NeonTextHighlight extends StatelessWidget {
           style: TextStyle(
               fontFamily: fontFamily,
               fontSize: fontSize,
-              color: Colors.white70.withOpacity(0.6),
+              color: Colors.white70.withOpacity(0.7),
               shadows: [
                 Shadow(
                   blurRadius: 10.0,
@@ -124,123 +90,31 @@ class NeonTextHighlight extends StatelessWidget {
                   color: color,
                   offset: Offset(0, 0),
                 ),
-                // Shadow(
-                //   blurRadius: 120.0,
-                //   color: kBlueColor,
-                //   offset: Offset(0, 0),
-                // ),
                 Shadow(
-                  blurRadius: 400.0,
+                  blurRadius: 300.0,
+                  color: color,
+                  offset: Offset(0, 0),
+                ),
+                Shadow(
+                  blurRadius: 500.0,
                   color: color,
                   offset: Offset(0, 0),
                 )
               ]),
         ),
-        // Stroked text as border.
-        // Text(
-        //   text,
-        //   style: GoogleFonts.delius.call().copyWith(
-        //         fontSize: fontSize,
-        //         foreground: Paint()
-        //           ..style = PaintingStyle.stroke
-        //           ..strokeWidth = 3
-        //           ..color = kBlueColor.withOpacity(0.8),
-        //       ),
-        // ),
-
+        //Stroked text as border.
         Text(
           text,
           style: TextStyle(
-              fontSize: fontSize,
-              fontFamily: fontFamily,
-              color: Colors.white70.withOpacity(0.6),
-              shadows: [
-                Shadow(
-                  blurRadius: 10.0,
-                  color: color,
-                  offset: Offset(0, 0),
-                ),
-                Shadow(
-                  blurRadius: 80.0,
-                  color: color,
-                  offset: Offset(0, 0),
-                ),
-                // Shadow(
-                //   blurRadius: 120.0,
-                //   color: kBlueColor,
-                //   offset: Offset(0, 0),
-                // ),
-                Shadow(
-                  blurRadius: 400.0,
-                  color: color,
-                  offset: Offset(0, 0),
-                )
-              ]),
+            fontSize: fontSize,
+            fontFamily: fontFamily,
+            foreground: Paint()
+              ..style = PaintingStyle.stroke
+              ..strokeWidth = 3
+              ..color = color.withOpacity(0.5),
+          ),
         ),
-        // Solid text as fill.
-        // Text(
-        //   text,
-        //   style: GoogleFonts.delius.call().copyWith(
-        //       fontSize: fontSize,
-        //       color: Colors.white70.withOpacity(0.6),
-        //       shadows: [
-        //         Shadow(
-        //           blurRadius: 10.0,
-        //           color: kBlueColor,
-        //           offset: Offset(0, 0),
-        //         ),
-        //         Shadow(
-        //           blurRadius: 80.0,
-        //           color: kBlueColor,
-        //           offset: Offset(0, 0),
-        //         ),
-        //         // Shadow(
-        //         //   blurRadius: 120.0,
-        //         //   color: kBlueColor,
-        //         //   offset: Offset(0, 0),
-        //         // ),
-        //         Shadow(
-        //           blurRadius: 400.0,
-        //           color: kBlueColor,
-        //           offset: Offset(0, 0),
-        //         )
-        //       ]),
-        // ),
       ],
-    );
-  }
-}
-
-class NeonText extends StatelessWidget {
-  const NeonText({
-    Key key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Text(
-      'Hello World',
-      style: TextStyle(
-          fontFamily: 'Electronic',
-          fontSize: 60,
-          color: kBlueColor,
-          shadows: [
-            Shadow(
-              blurRadius: 10.0,
-              color: kBlueColor,
-              offset: Offset(0, 0),
-            ),
-            Shadow(
-              blurRadius: 40.0,
-              color: kBlueColor,
-              offset: Offset(0, 0),
-            ),
-            Shadow(
-              blurRadius: 100.0,
-              color: kBlueColor,
-              offset: Offset(0, 0),
-            )
-          ]),
     );
   }
 }
