@@ -7,7 +7,7 @@ ThemeData themeData(BuildContext context) {
       appBarTheme: appBarTheme,
       primaryColor: kPrimaryColor,
       accentColor: kAccentLightColor,
-      scaffoldBackgroundColor: Colors.black,
+      scaffoldBackgroundColor: Colors.white,
       colorScheme: ColorScheme.light(
         secondary: kSecondaryLightColor,
       ),
