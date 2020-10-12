@@ -44,6 +44,8 @@ class ColorBar extends StatefulWidget {
 
 class _ColorBarState extends State<ColorBar> {
   int selectedColorIndex = 0;
+  Offset _offset =
+      Offset(SizeConfig.screenWidth / 2, SizeConfig.screenHeight / 2);
 
   final List<Color> colors = [
     kOrangeColor,
@@ -76,29 +78,45 @@ class _ColorBarState extends State<ColorBar> {
                 },
                 child: Padding(
                   padding:
-                      const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-                  child: Text(
-                    'Color',
-                    style: TextStyle(
+                      const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+                  child: Container(
+                    alignment: Alignment.topCenter,
+                    child: Container(
+                      width: 30,
+                      height: 30,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        border: Border.all(
+                            color: Colors.white,
+                            width: index == selectedColorIndex ? 3 : 1),
                         color: colors[index],
-                        fontSize: 30,
-                        fontWeight: index == selectedColorIndex
-                            ? FontWeight.bold
-                            : FontWeight.normal,
-                        fontFamily: 'Neoneon'),
+                      ),
+                    ),
                   ),
                 ),
               );
             },
           ),
-          Center(
-            child: NeonText(
-              text: 'open',
-              fontSize: 120,
-              fontFamily: 'Neoneon',
-              color: colors[selectedColorIndex],
-            ),
-          )
+          // Move neon text.
+          Positioned(
+              left: _offset.dx,
+              top: _offset.dy,
+              child: GestureDetector(
+                onPanUpdate: (details) {
+                  setState(() {
+                    _offset = Offset(
+                      details.delta.dx + _offset.dx,
+                      details.delta.dy + _offset.dy,
+                    );
+                  });
+                },
+                child: NeonText(
+                  text: 'open',
+                  fontSize: 120,
+                  fontFamily: 'Neoneon',
+                  color: colors[selectedColorIndex],
+                ),
+              )),
         ],
       ),
     );
